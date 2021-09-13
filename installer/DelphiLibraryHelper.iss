@@ -46,7 +46,8 @@ UninstallDisplayName={#ConstAppName}
 DefaultDirName={pf}\{#ConstAppPublisher}\{#ConstAppName}
 DefaultGroupName={#ConstAppPublisher}\{#ConstAppName}
 AllowNoIcons=true
-MinVersion=0,5.0.2195sp3
+;MinVersion=0,5.0.2195sp3
+MinVersion=0,6.0
 InfoBeforeFile=..\docs\{#ConstAppName} - Release Notes.rtf
 LicenseFile=..\docs\{#ConstAppName} - License.rtf
 UninstallDisplayIcon={app}\{#ConstAppExeName}
@@ -63,7 +64,9 @@ Name: code; Description: Source Code; Types: custom
 Name: program; Description: Program Files; Types: typical custom
 
 [Tasks]
-Name: "delphitools"; Description: "Add to delphi tools menu"; Components: program
+Name: "delphitoolsR"; Description: "Add to delphi tools menu (Rio)"; Components: program
+Name: "delphitoolsS"; Description: "Add to delphi tools menu (Sydney)"; Components: program
+Name: "delphitoolsA"; Description: "Add to delphi tools menu (Alexandria)"; Components: program
 
 [Files]
 Source: "..\windows\bin\win32\release\{#ConstAppExeName}"; DestDir: "{app}"; Flags: promptifolder replacesameversion; Components: program
@@ -89,11 +92,21 @@ Name: {group}\{#ConstAppName} Source Code; Filename: {app}\Source; Flags: folder
 Filename: "{app}\{#ConstAppExeName}"; WorkingDir: "{app}"; Flags: nowait postinstall runasoriginaluser; Description: "Launch {#ConstAppName}"
 
 [Registry]
-; Add Delphi Library Helper (Just do most recent version)
-Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\20.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Params"; Tasks: delphitools
-Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\20.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Path"; ValueData: "{app}\DelphiLibraryHelper.exe"; Tasks: delphitools
-Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\20.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Title"; ValueData: "Delphi Library Helper"; Tasks: delphitools
-Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\20.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "WorkingDir"; ValueData: "{app}\DelphiLibraryHelper"; Tasks: delphitools
+; Add Delphi Library Helper (Rio)
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\20.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Params"; Tasks: delphitoolsR
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\20.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Path"; ValueData: "{app}\DelphiLibraryHelper.exe"; Tasks: delphitoolsR
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\20.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Title"; ValueData: "Delphi Library Helper"; Tasks: delphitoolsR
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\20.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "WorkingDir"; ValueData: "{app}\"; Tasks: delphitoolsR
+; Add Delphi Library Helper (Sydney)
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\21.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Params"; Tasks: delphitoolsS
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\21.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Path"; ValueData: "{app}\DelphiLibraryHelper.exe"; Tasks: delphitoolsS
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\21.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Title"; ValueData: "Delphi Library Helper"; Tasks: delphitoolsS
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\21.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "WorkingDir"; ValueData: "{app}\"; Tasks: delphitoolsS
+; Add Delphi Library Helper (Alexandria)
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\22.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Params"; Tasks: delphitoolsA
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\22.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Path"; ValueData: "{app}\DelphiLibraryHelper.exe"; Tasks: delphitoolsA
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\22.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "Title"; ValueData: "Delphi Library Helper"; Tasks: delphitoolsA
+Root: "HKCU"; Subkey: "Software\Embarcadero\BDS\22.0\Transfer\Delphi Library Helper"; ValueType: string; ValueName: "WorkingDir"; ValueData: "{app}\"; Tasks: delphitoolsA
 ; File association
 Root: HKCR; Subkey: ".dlht"; ValueData: "{#ConstAppName}";Flags: uninsdeletevalue; ValueType: string; ValueName: ""
 Root: HKCR; Subkey: "{#ConstAppName}"; ValueData: "Program {#ConstAppName}";Flags: uninsdeletekey; ValueType: string; ValueName: ""
