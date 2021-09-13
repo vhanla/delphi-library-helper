@@ -1499,6 +1499,10 @@ var
 begin
   LProductVersion := GetProductVersion;
   case LProductVersion of
+    28:
+      Result := 'Delphi Alexandria';
+    27:
+      Result := 'Delphi Sydney';
     26:
       Result := 'Delphi Rio';
     25:
